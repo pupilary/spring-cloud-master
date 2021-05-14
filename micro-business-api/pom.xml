@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>micro-business</artifactId>
-	<name>micro-business</name>
+	<artifactId>micro-business-api</artifactId>
+	<name>micro-business-api</name>
 	<packaging>pom</packaging>
 	<description>Demo project for Spring Boot</description>
 
@@ -15,13 +15,8 @@
 	</parent>
 
 	<modules>
-		<module>provider-cloud-omc</module>
-		<module>provider-cloud-uac</module>
-	</modules>
 
-	<properties>
-		<boot-starter.version>1.0.1</boot-starter.version>
-	</properties>
+	</modules>
 
 	<dependencies>
 
@@ -29,18 +24,12 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>com.pupilary</groupId>
-				<artifactId>boot-starter-dependencies</artifactId>
-				<version>${boot-starter.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 
 	<build>
-		<finalName>micro-business</finalName>
+		<finalName>micro-business-api</finalName>
 	</build>
 
 </project>

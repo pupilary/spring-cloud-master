@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pupilary.provider.mapper.OauthClientDetailsMapper">
+    <resultMap id="BaseResultMap" type="com.pupilary.provider.model.domain.OauthClientDetails">
+        <!--@mbg.generated-->
+        <!--@Table oauth_client_details-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="client_id" jdbcType="VARCHAR" property="clientId"/>
+        <result column="client_name" jdbcType="VARCHAR" property="clientName"/>
+        <result column="resource_ids" jdbcType="VARCHAR" property="resourceIds"/>
+        <result column="client_secret" jdbcType="VARCHAR" property="clientSecret"/>
+        <result column="client_secret_str" jdbcType="VARCHAR" property="clientSecretStr"/>
+        <result column="scope" jdbcType="VARCHAR" property="scope"/>
+        <result column="authorized_grant_types" jdbcType="VARCHAR" property="authorizedGrantTypes"/>
+        <result column="web_server_redirect_uri" jdbcType="VARCHAR" property="webServerRedirectUri"/>
+        <result column="authorities" jdbcType="VARCHAR" property="authorities"/>
+        <result column="access_token_validity" jdbcType="INTEGER" property="accessTokenValidity"/>
+        <result column="refresh_token_validity" jdbcType="INTEGER" property="refreshTokenValidity"/>
+        <result column="additional_information" jdbcType="VARCHAR" property="additionalInformation"/>
+        <result column="autoapprove" jdbcType="VARCHAR" property="autoapprove"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="version" jdbcType="INTEGER" property="version"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, client_id, client_name, resource_ids, client_secret, client_secret_str, `scope`,
+        authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity,
+        refresh_token_validity, additional_information, autoapprove, create_time, update_time,
+        version
+    </sql>
+
+    <select id="queryClientDetailsFromClientId" resultType="com.pupilary.provider.model.domain.OauthClientDetails"
+            parameterType="java.lang.String">
+        select client_id,
+               client_secret,
+               resource_ids,
+               scope,
+               authorized_grant_types,
+               web_server_redirect_uri,
+               authorities,
+               access_token_validity,
+               refresh_token_validity,
+               additional_information,
+               autoapprove
+        from oauth_client_details
+        where client_id = #{clientId}
+    </select>
+</mapper>

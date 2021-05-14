@@ -17,7 +17,11 @@
 	</parent>
 
 	<modules>
+		<module>boot-starter-dependencies</module>
+		<module>cloud-starter-dependencies</module>
 		<module>micro-business</module>
+		<module>micro-business-api</module>
+		<module>tripartite-boot-version-dependencies</module>
 	</modules>
 
 	<properties>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pupilary.provider.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.pupilary.provider.model.domain.User">
+        <!--@mbg.generated-->
+        <!--@Table uac_user-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="full_name" jdbcType="VARCHAR" property="fullName"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="sex" jdbcType="TINYINT" property="sex"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="version" jdbcType="INTEGER" property="version"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, username, password, nick_name, avatar, full_name, mobile, address, sex, status,
+        create_time, update_time, version
+    </sql>
+
+    <select id="queryUserByUsername" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select * from uac_user
+        <where>
+            username = #{username}
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pupilary.provider.mapper.RoleMapper">
+    <resultMap id="BaseResultMap" type="com.pupilary.provider.model.domain.Role">
+        <!--@mbg.generated-->
+        <!--@Table uac_role-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="parent_id" jdbcType="BIGINT" property="parentId"/>
+        <result column="sort" jdbcType="INTEGER" property="sort"/>
+        <result column="summary" jdbcType="VARCHAR" property="summary"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="version" jdbcType="INTEGER" property="version"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, name, code, parent_id, sort, summary, create_time, update_time, version
+    </sql>
+
+    <select id="queryRoleByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select * from uac_role
+        <where>
+            id in (select role_id from uac_user_role where user_id = #{userId})
+        </where>
+    </select>
+
+</mapper>

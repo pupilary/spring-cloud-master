@@ -1,16 +1,15 @@
 package com.pupilary.oauth2;
 
+import com.pupilary.provider.service.ClientDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.code.InMemoryAuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
@@ -18,7 +17,6 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
-import java.util.Arrays;
 import java.util.Collections;
 
 /**
@@ -31,22 +29,15 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
     @Autowired
     private TokenStore tokenStore;
     @Autowired
-    private ClientDetailsService clientDetailsService;
-    @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
     private JwtAccessTokenConverter accessTokenConverter;
+    @Autowired
+    private ClientDetailService clientDetailService;
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory()
-                .withClient("webApp")
-                .secret(BCrypt.hashpw("secret", BCrypt.gensalt()))
-                .resourceIds("res1")
-                .authorizedGrantTypes("authorization_code", "password", "client_credentials", "implicit", "refresh_token")
-                .scopes("all")
-                .autoApprove(false)
-                .redirectUris("http://www.baidu.com");
+        clients.withClientDetails(clientDetailService);
     }
 
     @Override
@@ -68,7 +59,7 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
 
     private AuthorizationServerTokenServices authorizationServerTokenServices() {
         DefaultTokenServices tokenServices = new DefaultTokenServices();
-        tokenServices.setClientDetailsService(clientDetailsService);
+        tokenServices.setClientDetailsService(clientDetailService);
         tokenServices.setSupportRefreshToken(true);
         tokenServices.setTokenStore(tokenStore);
         TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
