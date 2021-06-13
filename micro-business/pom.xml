@@ -21,6 +21,7 @@
 
 	<properties>
 		<boot-starter.version>1.0.1</boot-starter.version>
+		<cloud-starter.version>1.0.1</cloud-starter.version>
 	</properties>
 
 	<dependencies>
@@ -33,6 +34,13 @@
 				<groupId>com.pupilary</groupId>
 				<artifactId>boot-starter-dependencies</artifactId>
 				<version>${boot-starter.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.pupilary</groupId>
+				<artifactId>cloud-starter-dependencies</artifactId>
+				<version>${cloud-starter.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>

@@ -38,6 +38,10 @@
             <groupId>com.pupilary</groupId>
             <artifactId>mybatis-boot-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.pupilary</groupId>
+            <artifactId>auth-server-cloud-starter</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

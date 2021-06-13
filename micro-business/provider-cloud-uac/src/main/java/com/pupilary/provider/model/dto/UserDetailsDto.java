@@ -1,5 +1,6 @@
 package com.pupilary.provider.model.dto;
 
+import com.pupilary.auth.server.model.Permission;
 import com.pupilary.provider.model.domain.Role;
 import com.pupilary.provider.model.domain.User;
 import lombok.Data;
@@ -24,7 +25,7 @@ public class UserDetailsDto extends User implements UserDetails {
     private static final long serialVersionUID = 5217470920709575176L;
 
     private List<Role> roles;
-    private Set<String> permissions;
+    private Set<Permission> permissions;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
