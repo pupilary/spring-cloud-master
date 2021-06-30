@@ -18,6 +18,7 @@
 
 	<modules>
 		<module>boot-starter-dependencies</module>
+		<module>boot-starter-web</module>
 		<module>cloud-starter-dependencies</module>
 		<module>micro-business</module>
 		<module>micro-business-api</module>
